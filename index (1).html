@@ -1,0 +1,1005 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Kanisk G R — Network &amp; Cybersecurity Engineer</title>
+<meta name="description" content="Portfolio of Kanisk G R, Network &amp; Cybersecurity Engineer specializing in FortiGate NGFW, ZTNA, SIEM and enterprise security infrastructure.">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@400;500;600;700&family=Inter:wght@400;500;600;700&family=JetBrains+Mono:wght@400;500;600;700&display=swap" rel="stylesheet">
+<style>
+/* ============ TOKENS ============ */
+:root{
+  --bg:#070b14;
+  --bg-soft:#0a1020;
+  --panel:#0d1424;
+  --panel-2:#0f1830;
+  --border:#1c2740;
+  --border-soft:#141c30;
+  --text:#e8edf7;
+  --text-dim:#a7b1c6;
+  --text-faint:#5f6b85;
+  --teal:#2dd4bf;
+  --teal-dim:#1a8f81;
+  --amber:#fb923c;
+  --violet:#a78bfa;
+  --red:#f8717188;
+  --font-display:'Space Grotesk', sans-serif;
+  --font-body:'Inter', sans-serif;
+  --font-mono:'JetBrains Mono', monospace;
+  --radius:10px;
+  --maxw:1180px;
+}
+*{margin:0;padding:0;box-sizing:border-box;}
+html{scroll-behavior:smooth;}
+@media (prefers-reduced-motion: reduce){
+  html{scroll-behavior:auto;}
+  *{animation-duration:.001ms !important; animation-iteration-count:1 !important; transition-duration:.001ms !important; scroll-behavior:auto !important;}
+}
+body{
+  background:var(--bg);
+  color:var(--text);
+  font-family:var(--font-body);
+  line-height:1.6;
+  -webkit-font-smoothing:antialiased;
+  overflow-x:hidden;
+}
+body::before{
+  content:'';
+  position:fixed; inset:0;
+  background-image:
+    linear-gradient(rgba(45,212,191,0.025) 1px, transparent 1px),
+    linear-gradient(90deg, rgba(45,212,191,0.025) 1px, transparent 1px);
+  background-size:42px 42px;
+  pointer-events:none;
+  z-index:0;
+}
+.wrap{max-width:var(--maxw); margin:0 auto; padding:0 28px; position:relative; z-index:1;}
+a{color:inherit; text-decoration:none;}
+button{font-family:inherit; cursor:pointer;}
+::selection{background:var(--teal); color:#04110f;}
+:focus-visible{outline:2px solid var(--teal); outline-offset:3px;}
+
+h1,h2,h3{font-family:var(--font-display); letter-spacing:-0.01em;}
+.eyebrow{
+  font-family:var(--font-mono); font-size:12px; letter-spacing:.14em; text-transform:uppercase;
+  color:var(--teal); display:flex; align-items:center; gap:10px; margin-bottom:14px;
+}
+.eyebrow::before{content:''; width:7px; height:7px; border-radius:50%; background:var(--teal); box-shadow:0 0 8px var(--teal); display:inline-block;}
+.section-head{max-width:640px; margin-bottom:48px;}
+.section-head h2{font-size:clamp(28px,4vw,40px); margin-bottom:14px;}
+.section-head p{color:var(--text-dim); font-size:16px;}
+section{padding:110px 0; position:relative; border-top:1px solid var(--border-soft);}
+.panel{
+  background:var(--panel);
+  border:1px solid var(--border);
+  border-radius:var(--radius);
+  position:relative;
+}
+.corner{position:absolute; width:14px; height:14px; opacity:.5;}
+.corner.tl{top:-1px; left:-1px; border-top:2px solid var(--teal); border-left:2px solid var(--teal); border-radius:var(--radius) 0 0 0;}
+.corner.br{bottom:-1px; right:-1px; border-bottom:2px solid var(--teal); border-right:2px solid var(--teal); border-radius:0 0 var(--radius) 0;}
+
+/* ============ STATUS BAR ============ */
+.statusbar{
+  background:var(--bg-soft); border-bottom:1px solid var(--border-soft);
+  font-family:var(--font-mono); font-size:11.5px; color:var(--text-faint);
+  padding:7px 0; letter-spacing:.04em;
+}
+.statusbar .wrap{display:flex; justify-content:space-between; align-items:center; flex-wrap:wrap; gap:8px;}
+.statusbar .dot{display:inline-block; width:6px; height:6px; border-radius:50%; background:var(--teal); margin-right:7px; box-shadow:0 0 6px var(--teal); animation:pulse 2.2s infinite;}
+@keyframes pulse{0%,100%{opacity:1;}50%{opacity:.35;}}
+.statusbar .seg{display:flex; align-items:center; gap:18px;}
+.statusbar .seg span{display:flex; align-items:center;}
+
+/* ============ NAV ============ */
+header.nav{
+  position:sticky; top:0; z-index:50;
+  background:rgba(7,11,20,0.86); backdrop-filter:blur(10px);
+  border-bottom:1px solid var(--border-soft);
+}
+nav{display:flex; align-items:center; justify-content:space-between; padding:16px 0;}
+.logo{font-family:var(--font-mono); font-weight:600; font-size:15px; display:flex; align-items:center; gap:9px;}
+.logo .bracket{color:var(--teal);}
+.navlinks{display:flex; gap:30px; font-size:13.5px; font-family:var(--font-mono);}
+.navlinks a{color:var(--text-dim); position:relative; padding:4px 0; transition:color .2s;}
+.navlinks a::after{content:''; position:absolute; left:0; bottom:-2px; width:0; height:1px; background:var(--teal); transition:width .25s;}
+.navlinks a:hover, .navlinks a.active{color:var(--text);}
+.navlinks a.active::after, .navlinks a:hover::after{width:100%;}
+.nav-cta{
+  font-family:var(--font-mono); font-size:12.5px; color:var(--bg);
+  background:var(--teal); padding:9px 16px; border-radius:6px; border:none;
+  font-weight:600; letter-spacing:.02em; transition:transform .15s, box-shadow .15s;
+}
+.nav-cta:hover{transform:translateY(-1px); box-shadow:0 6px 18px -4px rgba(45,212,191,.45);}
+.burger{display:none; background:none; border:1px solid var(--border); color:var(--text); padding:8px 10px; border-radius:6px;}
+
+/* ============ HERO ============ */
+.hero{padding:64px 0 90px; border-top:none; overflow:hidden; position:relative;}
+#net-canvas{position:absolute; inset:0; width:100%; height:100%; z-index:0; opacity:.65;}
+.hero .wrap{position:relative; z-index:1; display:grid; grid-template-columns:1.05fr .95fr; gap:50px; align-items:start;}
+.hero h1{font-size:clamp(34px,5.4vw,58px); line-height:1.08; margin-bottom:20px;}
+.hero h1 .accent{color:var(--teal);}
+.hero .role-line{
+  font-family:var(--font-mono); font-size:15px; color:var(--amber); margin-bottom:22px; min-height:22px;
+  display:flex; align-items:center; gap:8px;
+}
+.hero .role-line .caret{display:inline-block; width:8px; height:16px; background:var(--amber); animation:blink 1s steps(2) infinite;}
+@keyframes blink{50%{opacity:0;}}
+.hero p.lede{color:var(--text-dim); font-size:16.5px; max-width:480px; margin-bottom:34px;}
+.hero-ctas{display:flex; gap:14px; flex-wrap:wrap;}
+.btn{
+  font-family:var(--font-mono); font-size:13.5px; font-weight:600; padding:13px 22px; border-radius:7px;
+  border:1px solid var(--border); transition:all .2s; display:inline-flex; align-items:center; gap:8px;
+}
+.btn-primary{background:var(--teal); color:#04110f; border-color:var(--teal);}
+.btn-primary:hover{box-shadow:0 8px 22px -6px rgba(45,212,191,.5); transform:translateY(-1px);}
+.btn-ghost{color:var(--text); background:transparent;}
+.btn-ghost:hover{border-color:var(--teal); color:var(--teal);}
+
+/* terminal */
+.terminal{
+  background:#060a13; border:1px solid var(--border); border-radius:10px;
+  box-shadow:0 30px 60px -30px rgba(0,0,0,.7), 0 0 0 1px rgba(45,212,191,0.04);
+  overflow:hidden;
+}
+.terminal-bar{
+  display:flex; align-items:center; gap:8px; padding:10px 14px; background:#0a1020;
+  border-bottom:1px solid var(--border-soft);
+}
+.terminal-bar .tdot{width:10px; height:10px; border-radius:50%;}
+.terminal-bar .tdot.r{background:#f87171;} .terminal-bar .tdot.y{background:#fbbf24;} .terminal-bar .tdot.g{background:#34d399;}
+.terminal-bar .ttitle{margin-left:8px; font-family:var(--font-mono); font-size:11.5px; color:var(--text-faint);}
+.terminal-body{
+  font-family:var(--font-mono); font-size:13px; padding:16px 16px 10px; height:330px; overflow-y:auto; color:#c9d4e8;
+}
+.terminal-body::-webkit-scrollbar{width:6px;}
+.terminal-body::-webkit-scrollbar-thumb{background:var(--border); border-radius:3px;}
+.terminal-body .line{margin-bottom:5px; white-space:pre-wrap; word-break:break-word;}
+.terminal-body .ok{color:var(--teal);}
+.terminal-body .warn{color:var(--amber);}
+.terminal-body .muted{color:var(--text-faint);}
+.terminal-body .prompt-row{display:flex; gap:8px; align-items:flex-start;}
+.terminal-body .prompt-sym{color:var(--teal); flex-shrink:0;}
+#term-input{
+  background:transparent; border:none; color:var(--text); font-family:var(--font-mono); font-size:13px;
+  width:100%; caret-color:var(--teal);
+}
+.term-hint{padding:8px 16px 12px; font-family:var(--font-mono); font-size:11px; color:var(--text-faint); border-top:1px solid var(--border-soft);}
+.term-hint kbd{background:var(--panel-2); border:1px solid var(--border); padding:1px 5px; border-radius:4px; color:var(--text-dim);}
+
+/* ============ IMPACT STRIP ============ */
+.impact{padding:64px 0; border-top:1px solid var(--border-soft);}
+.impact .grid{display:grid; grid-template-columns:repeat(3,1fr); gap:1px; background:var(--border-soft); border:1px solid var(--border-soft); border-radius:var(--radius); overflow:hidden;}
+.impact .cell{background:var(--bg); padding:30px 20px; text-align:center;}
+.impact .num{font-family:var(--font-display); font-size:clamp(28px,3.4vw,40px); color:var(--teal); font-weight:600;}
+.impact .label{font-family:var(--font-mono); font-size:11.5px; color:var(--text-faint); margin-top:8px; letter-spacing:.04em; text-transform:uppercase;}
+
+/* ============ ABOUT ============ */
+.about .wrap{display:grid; grid-template-columns:1fr 1fr; gap:60px; align-items:center;}
+.about-copy p{color:var(--text-dim); margin-bottom:16px; font-size:15.5px;}
+.about-copy strong{color:var(--text); font-weight:600;}
+.scan-box{padding:26px; font-family:var(--font-mono); font-size:13px;}
+.scan-box .row{display:flex; gap:14px; padding:9px 0; border-bottom:1px solid var(--border-soft);}
+.scan-box .row:last-child{border-bottom:none;}
+.scan-box .k{color:var(--text-faint); width:120px; flex-shrink:0;}
+.scan-box .v{color:var(--teal);}
+
+/* ============ SKILLS (policy table) ============ */
+.tabs{display:flex; gap:10px; flex-wrap:wrap; margin-bottom:26px;}
+.tab{
+  font-family:var(--font-mono); font-size:12px; padding:8px 14px; border-radius:20px; border:1px solid var(--border);
+  color:var(--text-dim); background:var(--panel); transition:all .2s;
+}
+.tab.active, .tab:hover{border-color:var(--teal); color:var(--teal); background:rgba(45,212,191,0.08);}
+.policy-table{width:100%; border-collapse:collapse; font-family:var(--font-mono); font-size:13px;}
+.policy-table thead th{
+  text-align:left; color:var(--text-faint); font-size:10.5px; letter-spacing:.08em; text-transform:uppercase;
+  padding:10px 16px; border-bottom:1px solid var(--border); font-weight:500;
+}
+.policy-table tbody tr{border-bottom:1px solid var(--border-soft); transition:background .15s;}
+.policy-table tbody tr:hover{background:rgba(45,212,191,0.04);}
+.policy-table td{padding:13px 16px; color:var(--text-dim); vertical-align:middle;}
+.policy-table td.id{color:var(--text-faint); width:50px;}
+.policy-table td.skill{color:var(--text); font-weight:500;}
+
+/* ============ EXPERIENCE (log timeline) ============ */
+.log-entry{
+  border:1px solid var(--border); border-radius:var(--radius); margin-bottom:16px; overflow:hidden; background:var(--panel);
+}
+.log-head{
+  display:flex; align-items:center; justify-content:space-between; padding:18px 22px; cursor:pointer; gap:16px; flex-wrap:wrap;
+}
+.log-head:hover{background:rgba(45,212,191,0.03);}
+.log-meta{display:flex; align-items:center; gap:16px; flex-wrap:wrap;}
+.log-tag{font-family:var(--font-mono); font-size:10.5px; padding:3px 9px; border-radius:4px; letter-spacing:.04em;}
+.log-tag.active{background:rgba(45,212,191,0.12); color:var(--teal); border:1px solid rgba(45,212,191,.3);}
+.log-tag.past{background:rgba(167,139,250,0.12); color:var(--violet); border:1px solid rgba(167,139,250,.3);}
+.log-role{font-family:var(--font-display); font-size:18px; font-weight:600;}
+.log-org{color:var(--text-faint); font-size:13px; font-family:var(--font-mono);}
+.log-date{font-family:var(--font-mono); font-size:12px; color:var(--text-faint);}
+.log-chevron{transition:transform .25s; color:var(--text-faint); flex-shrink:0;}
+.log-entry.open .log-chevron{transform:rotate(180deg); color:var(--teal);}
+.log-body{max-height:0; overflow:hidden; transition:max-height .35s ease;}
+.log-body-inner{padding:0 22px 22px; border-top:1px solid var(--border-soft);}
+.log-body ul{margin-top:16px; padding-left:0; list-style:none;}
+.log-body li{position:relative; padding-left:22px; margin-bottom:12px; color:var(--text-dim); font-size:14.5px;}
+.log-body li::before{content:'›'; position:absolute; left:0; color:var(--teal); font-family:var(--font-mono);}
+
+/* ============ PROJECTS (case files) ============ */
+.case-grid{display:grid; grid-template-columns:repeat(3,1fr); gap:22px;}
+.case-card{
+  background:var(--panel); border:1px solid var(--border); border-radius:var(--radius);
+  padding:26px; cursor:pointer; transition:border-color .2s, transform .2s; position:relative; overflow:hidden;
+}
+.case-card:hover{border-color:var(--teal); transform:translateY(-3px);}
+.case-id{font-family:var(--font-mono); font-size:11px; color:var(--text-faint); margin-bottom:14px; display:flex; justify-content:space-between;}
+.case-stamp{font-family:var(--font-mono); font-size:10px; padding:2px 8px; border:1px solid var(--teal); color:var(--teal); border-radius:3px; transform:rotate(-3deg); letter-spacing:.05em;}
+.case-card h3{font-size:18px; margin-bottom:10px; line-height:1.3;}
+.case-summary{color:var(--text-dim); font-size:14px; margin-bottom:14px;}
+.case-detail{max-height:0; overflow:hidden; transition:max-height .35s ease;}
+.case-detail ul{list-style:none; margin-top:6px;}
+.case-detail li{position:relative; padding-left:18px; margin-bottom:10px; color:var(--text-dim); font-size:13.5px;}
+.case-detail li::before{content:'+'; position:absolute; left:0; color:var(--amber); font-family:var(--font-mono);}
+.case-toggle{font-family:var(--font-mono); font-size:11.5px; color:var(--teal); margin-top:8px; display:inline-block;}
+.case-links{display:flex; align-items:center; justify-content:space-between; margin-top:10px; flex-wrap:wrap; gap:10px;}
+.case-gh{
+  font-family:var(--font-mono); font-size:11.5px; color:var(--text-dim); border:1px solid var(--border);
+  padding:5px 11px; border-radius:6px; display:inline-flex; align-items:center; gap:6px; transition:all .2s;
+}
+.case-gh:hover{color:var(--teal); border-color:var(--teal); background:rgba(45,212,191,0.06);}
+
+/* ============ CERTS ============ */
+.cert-grid{display:grid; grid-template-columns:repeat(5,1fr); gap:16px;}
+.cert-badge{
+  background:var(--panel); border:1px solid var(--border); border-radius:var(--radius);
+  padding:20px 14px; text-align:center; position:relative; transition:border-color .2s, transform .2s;
+}
+.cert-badge:hover{border-color:var(--violet); transform:translateY(-3px);}
+.cert-badge .ring{
+  width:46px; height:46px; border-radius:50%; border:2px solid var(--violet); margin:0 auto 12px;
+  display:flex; align-items:center; justify-content:center; font-family:var(--font-mono); font-size:11px; color:var(--violet);
+}
+.cert-badge h4{font-size:12.5px; line-height:1.4; margin-bottom:6px; min-height:36px;}
+.cert-badge .issuer{font-family:var(--font-mono); font-size:10.5px; color:var(--text-faint);}
+.cert-badge .prog{font-size:9.5px; color:var(--amber); font-family:var(--font-mono); margin-top:6px;}
+
+/* ============ EDUCATION ============ */
+.edu-panel{padding:30px 32px; display:flex; justify-content:space-between; align-items:center; flex-wrap:wrap; gap:18px;}
+.edu-panel h3{font-size:19px; margin-bottom:6px;}
+.edu-panel .school{color:var(--text-dim); font-size:14px;}
+.edu-panel .when{font-family:var(--font-mono); font-size:12.5px; color:var(--text-faint); text-align:right;}
+
+/* ============ CONTACT ============ */
+.contact-grid{display:grid; grid-template-columns:1fr 1fr; gap:40px; align-items:start;}
+.contact-term{padding:22px; font-family:var(--font-mono); font-size:13px;}
+.contact-term .l{margin-bottom:8px; color:var(--text-dim);}
+.contact-term .l .k{color:var(--amber);}
+.copy-row{display:flex; align-items:center; justify-content:space-between; gap:10px; margin-top:6px;}
+.copy-btn{
+  font-family:var(--font-mono); font-size:11px; color:var(--text-faint); border:1px solid var(--border);
+  background:transparent; padding:4px 9px; border-radius:5px; transition:all .15s;
+}
+.copy-btn:hover{color:var(--teal); border-color:var(--teal);}
+.contact-cta h3{font-size:24px; margin-bottom:14px;}
+.contact-cta p{color:var(--text-dim); margin-bottom:24px;}
+.social-row{display:flex; gap:12px; margin-top:24px;}
+.social-row a{
+  font-family:var(--font-mono); font-size:12.5px; padding:10px 16px; border:1px solid var(--border); border-radius:7px;
+  color:var(--text-dim); transition:all .2s;
+}
+.social-row a:hover{color:var(--teal); border-color:var(--teal);}
+
+footer{padding:34px 0; border-top:1px solid var(--border-soft); font-family:var(--font-mono); font-size:11.5px; color:var(--text-faint);}
+footer .wrap{display:flex; justify-content:space-between; flex-wrap:wrap; gap:10px;}
+
+.reveal{opacity:0; transform:translateY(18px); transition:opacity .6s ease, transform .6s ease;}
+.reveal.in{opacity:1; transform:translateY(0);}
+
+/* ============ RESPONSIVE ============ */
+@media (max-width:980px){
+  .hero .wrap{grid-template-columns:1fr;}
+  .about .wrap{grid-template-columns:1fr;}
+  .case-grid{grid-template-columns:repeat(2,1fr);}
+  .cert-grid{grid-template-columns:repeat(3,1fr);}
+  .impact .grid{grid-template-columns:repeat(2,1fr);}
+  .contact-grid{grid-template-columns:1fr;}
+}
+@media (max-width:720px){
+  .navlinks{display:none;}
+  .burger{display:inline-flex;}
+  section{padding:70px 0;}
+  .case-grid{grid-template-columns:1fr;}
+  .cert-grid{grid-template-columns:repeat(2,1fr);}
+  .statusbar .seg.right{display:none;}
+  .terminal-body{height:280px;}
+}
+.navlinks.mobile-open{
+  display:flex; position:absolute; top:100%; left:0; right:0; background:var(--bg-soft);
+  flex-direction:column; padding:18px 28px; border-bottom:1px solid var(--border); gap:16px;
+}
+</style>
+</head>
+<body>
+
+<div class="statusbar">
+  <div class="wrap">
+    <div class="seg"><span><span class="dot"></span>SECURE CONNECTION</span></div>
+    <div class="seg right">
+      <span id="clock">--:--:--</span>
+      <span>UPTIME: <span id="uptime">0d 00:00:00</span></span>
+    </div>
+  </div>
+</div>
+
+<header class="nav">
+  <div class="wrap">
+    <nav>
+      <div class="logo"><span class="bracket">[</span>KANISK_G_R<span class="bracket">]</span></div>
+      <div class="navlinks" id="navlinks">
+        <a href="#about">about</a>
+        <a href="#skills">skills</a>
+        <a href="#experience">experience</a>
+        <a href="#projects">projects</a>
+        <a href="#certifications">certs</a>
+        <a href="#contact">contact</a>
+      </div>
+      <button class="burger" id="burger" aria-label="Toggle menu">☰</button>
+      <a class="nav-cta" href="Kanisk_Resume.pdf" download>↓ resume.pdf</a>
+    </nav>
+  </div>
+</header>
+
+<!-- ===================== HERO ===================== -->
+<section class="hero" id="top">
+  <canvas id="net-canvas"></canvas>
+  <div class="wrap">
+    <div>
+      <div class="eyebrow">NETWORK &amp; CYBERSECURITY ENGINEER</div>
+      <h1>Securing networks <span class="accent">before</span><br>threats become incidents.</h1>
+      <div class="role-line">&gt; <span id="role-text">FortiGate NGFW Administrator</span><span class="caret"></span></div>
+      <p class="lede">Junior Penetration Tester focused on enterprise perimeter security. I build and defend networks with FortiGate NGFW, Zero Trust access, and SIEM-driven detection — across deployments in India and the UAE.</p>
+      <div class="hero-ctas">
+        <a href="#projects" class="btn btn-primary">View case files →</a>
+        <a href="#contact" class="btn btn-ghost">Get in touch</a>
+      </div>
+    </div>
+
+    <div class="terminal reveal">
+      <div class="terminal-bar">
+        <span class="tdot r"></span><span class="tdot y"></span><span class="tdot g"></span>
+        <span class="ttitle">kanisk@socconsole:~</span>
+      </div>
+      <div class="terminal-body" id="term-body"></div>
+      <div class="prompt-row" style="padding:0 16px 14px;">
+        <span class="prompt-sym">❱</span>
+        <input id="term-input" type="text" autocomplete="off" spellcheck="false" placeholder="type 'help' …" aria-label="Terminal command input">
+      </div>
+      <div class="term-hint">Try <kbd>whoami</kbd> <kbd>skills</kbd> <kbd>projects</kbd> <kbd>sudo</kbd> · <kbd>help</kbd> for all commands</div>
+    </div>
+  </div>
+</section>
+
+<!-- ===================== IMPACT ===================== -->
+<section class="impact">
+  <div class="wrap">
+    <div class="grid">
+      <div class="cell"><div class="num" data-count="300">0</div><div class="label">Users onboarded · ZTNA</div></div>
+      <div class="cell"><div class="num" data-count="100">0</div><div class="label">Endpoints patched</div></div>
+      <div class="cell"><div class="num" data-count="0">—</div><div class="label">Incidents post go-live</div></div>
+    </div>
+  </div>
+</section>
+
+<!-- ===================== ABOUT ===================== -->
+<section id="about" class="about">
+  <div class="wrap">
+    <div class="about-copy reveal">
+      <div class="eyebrow">Overview</div>
+      <h2>Hands-on with the systems that keep enterprise networks alive.</h2>
+      <p>I'm a <strong>Network &amp; Cybersecurity Engineer</strong> working across firewall administration, Zero Trust access, SIEM log analysis, and vulnerability management. My day-to-day lives inside the <strong>Fortinet Security Fabric</strong> — FortiGate NGFW, FortiAnalyzer, FortiClient EMS — alongside Cisco infrastructure and enterprise patch management tooling.</p>
+      <p>I've delivered production security work for a <strong>UAE government client</strong>, onboarding 300+ users onto a ZTNA architecture with zero post-launch incidents, and closed every critical vulnerability across 100+ endpoints during a campus-wide patch rollout.</p>
+      <p>Currently building toward CCNA and deeper Fortinet certification (NSE 7), with an eye on SOC operations and incident response as the next stretch.</p>
+    </div>
+    <div class="panel scan-box reveal">
+      <div class="corner tl"></div><div class="corner br"></div>
+      <div class="row"><span class="k">$ whoami</span><span class="v">Kanisk G R</span></div>
+      <div class="row"><span class="k">role</span><span class="v">Junior Penetration Tester</span></div>
+      <div class="row"><span class="k">focus</span><span class="v">NGFW · ZTNA · SIEM · MFA</span></div>
+      <div class="row"><span class="k">status</span><span class="v">Open to opportunities</span></div>
+    </div>
+  </div>
+</section>
+
+<!-- ===================== SKILLS ===================== -->
+<section id="skills">
+  <div class="wrap">
+    <div class="section-head reveal">
+      <div class="eyebrow">Security Policy Table</div>
+      <h2>Skills, read like a firewall policy.</h2>
+      <p>Every entry below is an active rule — tools and frameworks I apply in production, not just on a resume line.</p>
+    </div>
+    <div class="tabs" id="skill-tabs">
+      <button class="tab active" data-filter="all">All</button>
+      <button class="tab" data-filter="Network">Security &amp; Network</button>
+      <button class="tab" data-filter="SOC">SIEM &amp; SOC</button>
+      <button class="tab" data-filter="Identity">Identity &amp; Access</button>
+      <button class="tab" data-filter="Platform">Platforms &amp; Tools</button>
+      <button class="tab" data-filter="Framework">Frameworks</button>
+    </div>
+    <div class="panel reveal" style="overflow-x:auto;">
+      <div class="corner tl"></div><div class="corner br"></div>
+      <table class="policy-table">
+        <thead><tr><th>ID</th><th>Category</th><th>Skill / Service</th></tr></thead>
+        <tbody id="skill-rows"></tbody>
+      </table>
+    </div>
+  </div>
+</section>
+
+<!-- ===================== EXPERIENCE ===================== -->
+<section id="experience">
+  <div class="wrap">
+    <div class="section-head reveal">
+      <div class="eyebrow">Event Log</div>
+      <h2>Experience.</h2>
+      <p>Click an entry to expand the full record.</p>
+    </div>
+
+    <div class="log-entry reveal" data-open="true">
+      <div class="log-head">
+        <div class="log-meta">
+          <span class="log-tag active">ACTIVE</span>
+          <div>
+            <div class="log-role">Junior Penetration Tester</div>
+            <div class="log-org">Data Scouts and Guards Technology · India</div>
+          </div>
+        </div>
+        <div style="display:flex; align-items:center; gap:14px;">
+          <span class="log-date">Sep 2025 — Present</span>
+          <span class="log-chevron">▾</span>
+        </div>
+      </div>
+      <div class="log-body">
+        <div class="log-body-inner">
+          <ul>
+            <li>Administer FortiGate NGFW security policies, virtual IPs (VIPs), NAT rules, and ZTNA access controls to secure enterprise network perimeters, enforcing strict least-privilege access across every segment.</li>
+            <li>Deploy and manage FortiClient EMS alongside FortiAuthenticator to enforce Zero Trust Network Access and multi-factor authentication, removing password-only login as a viable attack vector.</li>
+            <li>Design network segmentation strategies and routing optimisations that shrink the available attack surface while improving throughput and latency across enterprise environments.</li>
+            <li>Monitor live infrastructure through FortiAnalyzer SIEM dashboards, building custom event-correlation rules and automated reporting pipelines that sharpen SOC alert visibility and cut incident response time.</li>
+            <li>Run recurring firewall rule audits and policy clean-ups, retiring redundant or overly permissive rules to keep least-privilege enforcement intact as the network evolves.</li>
+            <li>Collaborate with senior engineers during incident triage, translating raw SIEM alerts into clear, actionable findings for stakeholders.</li>
+          </ul>
+        </div>
+      </div>
+    </div>
+
+    <div class="log-entry reveal">
+      <div class="log-head">
+        <div class="log-meta">
+          <span class="log-tag past">COMPLETED</span>
+          <div>
+            <div class="log-role">Intern</div>
+            <div class="log-org">Defence Research and Development Organisation (DRDO) · India</div>
+          </div>
+        </div>
+        <div style="display:flex; align-items:center; gap:14px;">
+          <span class="log-date">Mar 2025 — Jun 2025</span>
+          <span class="log-chevron">▾</span>
+        </div>
+      </div>
+      <div class="log-body">
+        <div class="log-body-inner">
+          <ul>
+            <li>Assisted in the design and simulation of antennas used in defence communication and tracking systems, modelling radiating elements within simulation tooling for mission-critical RF applications.</li>
+            <li>Evaluated antenna performance parameters including gain, radiation pattern, and operating frequency characteristics, comparing simulated results against design specifications to validate readiness for integration.</li>
+            <li>Worked with engineering teams to analyze antenna behavior under varying operating conditions, supporting system integration activities for defence communication platforms.</li>
+            <li>Gained exposure to RF engineering principles and defence-grade design rigor, extending a network-security skill set into adjacent hardware and communications domains.</li>
+          </ul>
+        </div>
+      </div>
+    </div>
+
+    <div class="log-entry reveal">
+      <div class="log-head">
+        <div class="log-meta">
+          <span class="log-tag past">COMPLETED</span>
+          <div>
+            <div class="log-role">Security Intern</div>
+            <div class="log-org">Data Scouts and Guards Technology · India</div>
+          </div>
+        </div>
+        <div style="display:flex; align-items:center; gap:14px;">
+          <span class="log-date">Jan 2025 — Mar 2025</span>
+          <span class="log-chevron">▾</span>
+        </div>
+      </div>
+      <div class="log-body">
+        <div class="log-body-inner">
+          <ul>
+            <li>Deployed Ivanti Patch Management across 100+ Windows and Linux endpoints, achieving 100% CVE remediation within defined SLA timelines and eliminating known exploitable vulnerabilities from the environment.</li>
+            <li>Conducted structured vulnerability assessments and tracked remediation activity end-to-end, closing every critical security gap identified during the engagement.</li>
+            <li>Hardened Windows and Linux servers by applying CIS security baselines and NIST SP 800-53 controls, measurably reducing the available attack surface across the server fleet.</li>
+            <li>Documented findings and remediation steps for each endpoint, establishing a repeatable patch-and-harden workflow for future cycles.</li>
+          </ul>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ===================== PROJECTS ===================== -->
+<section id="projects">
+  <div class="wrap">
+    <div class="section-head reveal">
+      <div class="eyebrow">Case Files</div>
+      <h2>Projects.</h2>
+      <p>Click a card to open the full case record.</p>
+    </div>
+    <div class="case-grid">
+
+      <div class="case-card reveal">
+        <div class="case-id"><span>CASE-01 · UAE GOVT</span><span class="case-stamp">DEPLOYED</span></div>
+        <h3>ZTNA Implementation with MFA</h3>
+        <p class="case-summary">Zero Trust rollout for a UAE government organisation, integrated with Azure Entra ID across 300+ users.</p>
+        <div class="case-detail">
+          <ul>
+            <li>Deployed FortiClient EMS-based Zero Trust Network Access, onboarding 300+ users across Azure Entra ID-integrated infrastructure with zero production incidents post go-live.</li>
+            <li>Integrated FortiAuthenticator with FortiGate NGFW and Azure Entra ID to enable directory sync and one-time-password (OTP) authentication, eliminating password-only login as an attack vector.</li>
+            <li>Coordinated a phased rollout and user onboarding plan to minimise disruption inside a live government environment.</li>
+            <li>Validated access policies against least-privilege principles ahead of full cutover, and documented the ZTNA architecture for ongoing maintenance and audit.</li>
+          </ul>
+        </div>
+        <div class="case-links"><span class="case-toggle">+ expand record</span></div>
+      </div>
+
+      <div class="case-card reveal">
+        <div class="case-id"><span>CASE-02 · SIEM</span><span class="case-stamp">DEPLOYED</span></div>
+        <h3>Centralised SIEM &amp; Log Analysis</h3>
+        <p class="case-summary">FortiAnalyzer deployment centralising logs across the firewall and endpoint fleet into one pane of visibility.</p>
+        <div class="case-detail">
+          <ul>
+            <li>Deployed FortiAnalyzer to centralise log ingestion from FortiGate firewalls and FortiClient EMS endpoints into a single, unified view.</li>
+            <li>Configured dashboards, event-correlation rules, and automated reports to surface anomalous traffic patterns and policy violations faster.</li>
+            <li>Tuned correlation thresholds to cut down noisy and false-positive alerts, improving signal quality for SOC triage.</li>
+            <li>Established a recurring reporting cadence giving stakeholders ongoing visibility into firewall and endpoint security posture.</li>
+          </ul>
+        </div>
+        <div class="case-links"><span class="case-toggle">+ expand record</span></div>
+      </div>
+
+      <div class="case-card reveal">
+        <div class="case-id"><span>CASE-03 · DUBAI, UAE</span><span class="case-stamp">VALIDATED</span></div>
+        <h3>Private Data Centre Infrastructure</h3>
+        <p class="case-summary">On-site deployment for an MNC data centre build-out in Dubai, UAE.</p>
+        <div class="case-detail">
+          <ul>
+            <li>Contributed to on-site deployment of Mellanox and Cisco Nexus switches alongside Sangfor/Cisco servers for a production data centre build-out.</li>
+            <li>Performed structured rack installation and cabling per design specifications, ensuring physical-layer integrity ahead of go-live.</li>
+            <li>Carried out post-deployment validation testing to confirm connectivity, redundancy, and performance ahead of production cutover.</li>
+            <li>Worked cross-functionally with on-site engineering teams to troubleshoot deployment issues in real time.</li>
+          </ul>
+        </div>
+        <div class="case-links"><span class="case-toggle">+ expand record</span></div>
+      </div>
+
+      <div class="case-card reveal">
+        <div class="case-id"><span>CASE-04 · LAB BUILD</span><span class="case-stamp">OPEN SOURCE</span></div>
+        <h3>FortiAuthenticator SAML &amp; LDAP SSO Lab</h3>
+        <p class="case-summary">Self-built lab integrating FortiAuthenticator as a SAML Identity Provider with FortiGate as the Service Provider, backed by LDAP/AD.</p>
+        <div class="case-detail">
+          <ul>
+            <li>Stood up FortiAuthenticator from a blank VM — networking, FQDN, DNS, and service ports — then registered an Active Directory server as a remote LDAP source.</li>
+            <li>Imported and grouped LDAP users, then built a realm mapping the directory source into an authenticatable context.</li>
+            <li>Configured FortiAuthenticator as a full SAML 2.0 Identity Provider and FortiGate as the matching Service Provider, completing the IdP↔SP trust handshake (entity IDs, ACS/SLS URLs).</li>
+            <li>Mapped SAML assertion attributes back to LDAP fields so FortiGate receives group data for admin profile assignment — replacing local admin accounts with centralised SSO.</li>
+          </ul>
+        </div>
+        <div class="case-links">
+          <span class="case-toggle">+ expand record</span>
+          <a class="case-gh" href="https://github.com/KaniskRaj/fortiauth-saml-sso-lab" target="_blank" rel="noopener" onclick="event.stopPropagation()">⌥ View on GitHub</a>
+        </div>
+      </div>
+
+      <div class="case-card reveal">
+        <div class="case-id"><span>CASE-05 · TOOLING</span><span class="case-stamp">OPEN SOURCE</span></div>
+        <h3>Phishing URL Risk Scanner</h3>
+        <p class="case-summary">Python CLI &amp; library that heuristically scores whether a URL looks like phishing, rebuilt from a single script into a tested, production-shaped tool.</p>
+        <div class="case-detail">
+          <ul>
+            <li>Replaced a single keyword-match script with weighted scoring across domain/IP blocklists, structural red flags, and capped keyword signals — cutting false positives from any one weak signal.</li>
+            <li>Rebuilt threat-intel loading around an on-disk TTL cache with retrying, timeout-aware requests and a graceful offline fallback, instead of re-downloading ~13MB on every run.</li>
+            <li>Added a proper CLI (single-URL, batch file, JSON output, offline mode) with CI-friendly exit codes, on top of the original interactive prompt loop.</li>
+            <li>Covered the rewrite with pytest (90%+ coverage), ruff, and mypy, running across Python 3.9–3.12 in GitHub Actions CI.</li>
+          </ul>
+        </div>
+        <div class="case-links">
+          <span class="case-toggle">+ expand record</span>
+          <a class="case-gh" href="https://github.com/KaniskRaj/Phishing_scanner" target="_blank" rel="noopener" onclick="event.stopPropagation()">⌥ View on GitHub</a>
+        </div>
+      </div>
+
+    </div>
+  </div>
+</section>
+
+<!-- ===================== CERTIFICATIONS ===================== -->
+<section id="certifications">
+  <div class="wrap">
+    <div class="section-head reveal">
+      <div class="eyebrow">Verification Wall</div>
+      <h2>Certifications.</h2>
+      <p>Hover a badge for the issuing body.</p>
+    </div>
+    <div class="cert-grid">
+      <div class="cert-badge reveal" title="Cisco"><div class="ring">CCNA</div><h4>Certified Cisco Network Administrator</h4><div class="issuer">Cisco</div><div class="prog">IN PROGRESS</div></div>
+      <a class="cert-badge reveal" title="Fortinet — verify on Credly" href="https://www.credly.com/badges/aa302ef3-3663-43f9-aad0-d06015a83033" target="_blank" rel="noopener"><div class="ring">FCA</div><h4>Fortinet Certified Associate — Cybersecurity</h4><div class="issuer">Fortinet</div></a>
+      <a class="cert-badge reveal" title="Fortinet — verify on Credly" href="https://www.credly.com/earner/earned/badge/bfa08a00-beda-47f1-a66d-e4267fbbd34c" target="_blank" rel="noopener"><div class="ring">NSE3</div><h4>Network Security Associate, FortiGate 7.6 Operator</h4><div class="issuer">Fortinet</div></a>
+      <a class="cert-badge reveal" title="Check Point — verify on Credly" href="https://www.credly.com/earner/earned/badge/2d572ce6-7ca9-41b8-8845-98356ba503c0" target="_blank" rel="noopener"><div class="ring">HE</div><h4>Harmony Endpoint &amp; Harmony Browse Specialist</h4><div class="issuer">Check Point</div></a>
+      <a class="cert-badge reveal" title="Google — verify on Credly" href="https://www.credly.com/earner/earned/badge/60fd36b9-e47f-41c8-b3c5-791680081d37" target="_blank" rel="noopener"><div class="ring">GC</div><h4>Google Cybersecurity Certificate</h4><div class="issuer">Coursera</div></a>
+    </div>
+  </div>
+</section>
+
+<!-- ===================== EDUCATION ===================== -->
+<section id="education">
+  <div class="wrap">
+    <div class="section-head reveal">
+      <div class="eyebrow">Education</div>
+      <h2>Foundation.</h2>
+    </div>
+    <div class="panel edu-panel reveal">
+      <div class="corner tl"></div><div class="corner br"></div>
+      <div>
+        <h3>Bachelor of Engineering — Electronics &amp; Communication</h3>
+        <div class="school">Velalar College of Engineering and Technology · Erode, Tamil Nadu, India</div>
+      </div>
+      <div class="when">Nov 2021 — May 2025</div>
+    </div>
+  </div>
+</section>
+
+<!-- ===================== CONTACT ===================== -->
+<section id="contact">
+  <div class="wrap">
+    <div class="contact-grid">
+      <div class="contact-cta reveal">
+        <div class="eyebrow">Open Channel</div>
+        <h3>Let's talk about your network's perimeter.</h3>
+        <p>Open to network security, SOC, and managed-services roles across India and the Middle East. Reach out directly or run the command on the right.</p>
+        <div class="social-row">
+          <a href="mailto:kaniskraj787@gmail.com">✉ Email</a>
+          <a href="https://linkedin.com/in/kaniskraj" target="_blank" rel="noopener">in/kaniskraj</a>
+          <a href="https://github.com/KaniskRaj" target="_blank" rel="noopener">⌥ GitHub</a>
+          <a href="tel:+918300855038">📞 Call</a>
+        </div>
+      </div>
+      <div class="panel contact-term reveal">
+        <div class="corner tl"></div><div class="corner br"></div>
+        <div class="l"><span class="k">$</span> contact --resolve</div>
+        <div class="l">name      : Kanisk G R</div>
+        <div class="copy-row"><span class="l" style="margin:0;">email     : kaniskraj787@gmail.com</span><button class="copy-btn" data-copy="kaniskraj787@gmail.com">copy</button></div>
+        <div class="copy-row"><span class="l" style="margin:0;">phone     : +91 8300855038</span><button class="copy-btn" data-copy="+918300855038">copy</button></div>
+        <div class="l">linkedin  : linkedin.com/in/kaniskraj</div>
+        <div class="l" style="margin-top:10px;" id="contact-status"><span class="k">$</span> <span style="color:var(--teal);">channel ready. awaiting input_</span></div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<footer>
+  <div class="wrap">
+    <span>© 2026 Kanisk G R — Network &amp; Cybersecurity Engineer</span>
+    <span id="footer-clock">Built with intent. No frameworks, no tracking.</span>
+  </div>
+</footer>
+
+<script>
+/* ============ STATUS BAR CLOCK ============ */
+function pad(n){return n.toString().padStart(2,'0');}
+function updateClock(){
+  const d = new Date();
+  document.getElementById('clock').textContent = pad(d.getHours())+':'+pad(d.getMinutes())+':'+pad(d.getSeconds());
+}
+setInterval(updateClock, 1000); updateClock();
+
+const bootTime = Date.now();
+function updateUptime(){
+  const s = Math.floor((Date.now()-bootTime)/1000);
+  const days = Math.floor(s/86400);
+  const h = pad(Math.floor((s%86400)/3600)), m = pad(Math.floor((s%3600)/60)), sec = pad(s%60);
+  document.getElementById('uptime').textContent = days+'d '+h+':'+m+':'+sec;
+}
+setInterval(updateUptime, 1000); updateUptime();
+
+/* ============ NAV ============ */
+const burger = document.getElementById('burger');
+const navlinks = document.getElementById('navlinks');
+burger.addEventListener('click', ()=> navlinks.classList.toggle('mobile-open'));
+document.querySelectorAll('.navlinks a').forEach(a=>{
+  a.addEventListener('click', ()=> navlinks.classList.remove('mobile-open'));
+});
+
+const sections = document.querySelectorAll('section[id]');
+const navAnchors = document.querySelectorAll('.navlinks a');
+const navObserver = new IntersectionObserver((entries)=>{
+  entries.forEach(entry=>{
+    if(entry.isIntersecting){
+      navAnchors.forEach(a=>a.classList.toggle('active', a.getAttribute('href')==='#'+entry.target.id));
+    }
+  });
+}, {rootMargin:'-40% 0px -50% 0px'});
+sections.forEach(s=>navObserver.observe(s));
+
+/* ============ SCROLL REVEAL ============ */
+const revealObserver = new IntersectionObserver((entries)=>{
+  entries.forEach(e=>{ if(e.isIntersecting){ e.target.classList.add('in'); revealObserver.unobserve(e.target); } });
+}, {threshold:.12});
+document.querySelectorAll('.reveal').forEach(el=>revealObserver.observe(el));
+
+/* ============ HERO ROLE TYPEWRITER ============ */
+const roles = ['FortiGate NGFW Administrator','Zero Trust (ZTNA) Architect','SIEM & SOC Analyst','Vulnerability Management Lead','Cisco Infrastructure Engineer'];
+let roleIdx=0, charIdx=0, deleting=false;
+const roleEl = document.getElementById('role-text');
+function typeRole(){
+  const word = roles[roleIdx];
+  if(!deleting){
+    charIdx++;
+    roleEl.textContent = word.slice(0,charIdx);
+    if(charIdx===word.length){ deleting=true; setTimeout(typeRole, 1800); return; }
+  } else {
+    charIdx--;
+    roleEl.textContent = word.slice(0,charIdx);
+    if(charIdx===0){ deleting=false; roleIdx=(roleIdx+1)%roles.length; }
+  }
+  setTimeout(typeRole, deleting?28:55);
+}
+typeRole();
+
+/* ============ IMPACT COUNTERS ============ */
+const counters = document.querySelectorAll('.num[data-count]');
+const counterObserver = new IntersectionObserver((entries)=>{
+  entries.forEach(entry=>{
+    if(entry.isIntersecting){
+      const el = entry.target;
+      const target = parseInt(el.getAttribute('data-count'),10);
+      if(target===0){ el.textContent='0'; counterObserver.unobserve(el); return; }
+      let cur=0; const step=Math.max(1,Math.ceil(target/40));
+      const iv = setInterval(()=>{
+        cur+=step;
+        if(cur>=target){ cur=target; clearInterval(iv); }
+        el.textContent = cur+'+';
+      }, 28);
+      counterObserver.unobserve(el);
+    }
+  });
+}, {threshold:.4});
+counters.forEach(c=>counterObserver.observe(c));
+
+/* ============ SKILLS DATA + FILTER ============ */
+const skillData = [
+  {cat:'Network', name:'FortiGate NGFW'}, {cat:'Network', name:'ZTNA / Zero Trust'},
+  {cat:'Network', name:'SSL / IPSec VPN'}, {cat:'Network', name:'VLAN Segmentation'},
+  {cat:'Network', name:'Cisco Switches & Routers'},
+  {cat:'SOC', name:'FortiAnalyzer'}, {cat:'SOC', name:'SIEM Log Analysis'},
+  {cat:'SOC', name:'Event Correlation'}, {cat:'SOC', name:'Incident Detection & Response'},
+  {cat:'Identity', name:'FortiAuthenticator'}, {cat:'Identity', name:'MFA'},
+  {cat:'Identity', name:'Azure Entra ID'},
+  {cat:'Platform', name:'Linux & Windows Server'}, {cat:'Platform', name:'VMware'},
+  {cat:'Platform', name:'Wireshark'}, {cat:'Platform', name:'Nmap'},
+  {cat:'Platform', name:'Metasploit & Burp Suite'},
+  {cat:'Framework', name:'NIST CSF'}, {cat:'Framework', name:'ISO 27001'},
+  {cat:'Framework', name:'MITRE ATT&CK'}, {cat:'Framework', name:'OWASP'},
+];
+const catLabel = {Network:'Security & Network', SOC:'SIEM & SOC', Identity:'Identity & Access', Platform:'Platforms & Tools', Framework:'Frameworks'};
+const skillRows = document.getElementById('skill-rows');
+function renderSkills(filter){
+  skillRows.innerHTML='';
+  skillData.filter(s=>filter==='all'||s.cat===filter).forEach((s,i)=>{
+    const tr = document.createElement('tr');
+    tr.innerHTML = `<td class="id">${String(i+1).padStart(2,'0')}</td><td>${catLabel[s.cat]}</td><td class="skill">${s.name}</td>`;
+    skillRows.appendChild(tr);
+  });
+}
+renderSkills('all');
+document.querySelectorAll('#skill-tabs .tab').forEach(tab=>{
+  tab.addEventListener('click', ()=>{
+    document.querySelectorAll('#skill-tabs .tab').forEach(t=>t.classList.remove('active'));
+    tab.classList.add('active');
+    renderSkills(tab.getAttribute('data-filter'));
+  });
+});
+
+/* ============ EXPERIENCE ACCORDION ============ */
+document.querySelectorAll('.log-entry').forEach(entry=>{
+  const head = entry.querySelector('.log-head');
+  const body = entry.querySelector('.log-body');
+  function setOpen(open){
+    entry.classList.toggle('open', open);
+    body.style.maxHeight = open ? body.scrollHeight+'px' : '0px';
+  }
+  head.addEventListener('click', ()=> setOpen(!entry.classList.contains('open')));
+  if(entry.getAttribute('data-open')==='true'){ setOpen(true); }
+});
+window.addEventListener('resize', ()=>{
+  document.querySelectorAll('.log-entry.open .log-body').forEach(b=> b.style.maxHeight = b.scrollHeight+'px');
+});
+
+/* ============ CASE CARDS ============ */
+document.querySelectorAll('.case-card').forEach(card=>{
+  const detail = card.querySelector('.case-detail');
+  const toggle = card.querySelector('.case-toggle');
+  let open=false;
+  card.addEventListener('click', ()=>{
+    open=!open;
+    detail.style.maxHeight = open ? detail.scrollHeight+'px' : '0px';
+    toggle.textContent = open ? '− collapse record' : '+ expand record';
+  });
+});
+
+/* ============ COPY TO CLIPBOARD ============ */
+document.querySelectorAll('.copy-btn').forEach(btn=>{
+  btn.addEventListener('click', (e)=>{
+    e.stopPropagation();
+    navigator.clipboard.writeText(btn.getAttribute('data-copy')).then(()=>{
+      const orig = btn.textContent;
+      btn.textContent='copied';
+      setTimeout(()=>btn.textContent=orig, 1400);
+    });
+  });
+});
+
+/* ============ NETWORK CANVAS BACKGROUND ============ */
+const canvas = document.getElementById('net-canvas');
+const ctx = canvas.getContext('2d');
+let nodes = [];
+function sizeCanvas(){
+  const hero = canvas.parentElement;
+  canvas.width = hero.offsetWidth; canvas.height = hero.offsetHeight;
+}
+function initNodes(){
+  const count = window.innerWidth < 720 ? 22 : 42;
+  nodes = Array.from({length:count}, ()=>({
+    x: Math.random()*canvas.width, y: Math.random()*canvas.height,
+    vx:(Math.random()-0.5)*0.35, vy:(Math.random()-0.5)*0.35
+  }));
+}
+sizeCanvas(); initNodes();
+window.addEventListener('resize', ()=>{ sizeCanvas(); initNodes(); });
+
+function drawNet(){
+  ctx.clearRect(0,0,canvas.width,canvas.height);
+  ctx.fillStyle = 'rgba(45,212,191,0.55)';
+  for(const n of nodes){
+    n.x+=n.vx; n.y+=n.vy;
+    if(n.x<0||n.x>canvas.width) n.vx*=-1;
+    if(n.y<0||n.y>canvas.height) n.vy*=-1;
+  }
+  for(let i=0;i<nodes.length;i++){
+    for(let j=i+1;j<nodes.length;j++){
+      const a=nodes[i], b=nodes[j];
+      const dist = Math.hypot(a.x-b.x, a.y-b.y);
+      if(dist<150){
+        ctx.strokeStyle = 'rgba(45,212,191,'+(0.12*(1-dist/150))+')';
+        ctx.lineWidth=1;
+        ctx.beginPath(); ctx.moveTo(a.x,a.y); ctx.lineTo(b.x,b.y); ctx.stroke();
+      }
+    }
+  }
+  for(const n of nodes){
+    ctx.beginPath(); ctx.arc(n.x,n.y,2.2,0,Math.PI*2); ctx.fill();
+  }
+  requestAnimationFrame(drawNet);
+}
+const reduceMotion = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+if(!reduceMotion) drawNet();
+
+/* ============ INTERACTIVE TERMINAL ============ */
+const termBody = document.getElementById('term-body');
+const termInput = document.getElementById('term-input');
+
+function printLine(html, cls){
+  const div = document.createElement('div');
+  div.className = 'line'+(cls?(' '+cls):'');
+  div.innerHTML = html;
+  termBody.appendChild(div);
+  termBody.scrollTop = termBody.scrollHeight;
+}
+function printPrompt(cmd){
+  printLine('<span style="color:#2dd4bf;">❱</span> '+cmd);
+}
+
+const helpText = `Available commands:
+  whoami / about     — who I am
+  skills             — categories of expertise
+  experience         — work history
+  projects           — case files / projects
+  certifications     — certs &amp; badges
+  education          — academic background
+  contact            — how to reach me
+  ls                 — list portfolio sections
+  clear              — clear the terminal
+  sudo [anything]    — try it`;
+
+const commands = {
+  help: ()=> helpText,
+  whoami: ()=> `Kanisk G R — Network & Cybersecurity Engineer
+Junior Penetration Tester
+Focus: FortiGate NGFW · ZTNA · SIEM · MFA · Cisco infra`,
+  about: ()=> commands.whoami(),
+  skills: ()=> `Security & Network   → FortiGate NGFW, ZTNA, VPN, VLAN, Cisco
+SIEM & SOC           → FortiAnalyzer, Log Analysis, Event Correlation
+Identity & Access    → FortiAuthenticator, MFA, Azure Entra ID
+Platforms & Tools    → Linux, VMware, Wireshark, Nmap, Metasploit, Burp Suite
+Frameworks           → NIST CSF, ISO 27001, MITRE ATT&CK, OWASP, ITSM
+→ scroll to #skills for the full policy table`,
+  experience: ()=> `[ACTIVE]    Junior Penetration Tester — Data Scouts & Guards Tech (Sep 2025–Present)
+[COMPLETE]  Intern — DRDO, Antenna Design & Simulation (Mar 2025–Jun 2025)
+[COMPLETE]  Security Intern — Data Scouts & Guards Tech (Jan 2025–Mar 2025)
+→ scroll to #experience for full event log`,
+  projects: ()=> `CASE-01  ZTNA Implementation with MFA — UAE Government [DEPLOYED]
+CASE-02  Centralised SIEM & Log Analysis — FortiAnalyzer [DEPLOYED]
+CASE-03  Private Data Centre Infrastructure — Dubai, UAE [VALIDATED]
+CASE-04  FortiAuthenticator SAML & LDAP SSO Lab [OPEN SOURCE]
+CASE-05  Phishing URL Risk Scanner [OPEN SOURCE]
+→ scroll to #projects for full case files, or check github.com/KaniskRaj`,
+  certifications: ()=> `Fortinet Certified Associate — Cybersecurity
+NSE 3 — FortiGate 7.6 Operator
+Check Point Harmony Endpoint & Browse Specialist
+Google Cybersecurity Certificate
+Cisco CCNA — in progress`,
+  certs: ()=> commands.certifications(),
+  education: ()=> `B.E. Electronics & Communication
+Velalar College of Engineering and Technology, Erode, TN
+Nov 2021 — May 2025`,
+  contact: ()=> `email   : kaniskraj787@gmail.com
+phone   : +91 8300855038
+linkedin: linkedin.com/in/kaniskraj`,
+  ls: ()=> `about.txt  skills.json  experience.log  projects/  certifications.db  contact.sh`,
+  clear: ()=> { termBody.innerHTML=''; return null; },
+};
+
+function runCommand(raw){
+  const cmd = raw.trim();
+  if(cmd==='') return;
+  printPrompt(cmd);
+  const lower = cmd.toLowerCase();
+  if(lower.startsWith('sudo')){
+    printLine('Permission denied: this console requires NSE 7 clearance.', 'warn');
+    return;
+  }
+  const handler = commands[lower];
+  if(handler){
+    const out = handler();
+    if(out!==null && out!==undefined) printLine(out.replace(/\n/g,'<br>'));
+  } else {
+    printLine(`command not found: ${cmd} — type 'help'`, 'warn');
+  }
+}
+
+termInput.addEventListener('keydown', (e)=>{
+  if(e.key==='Enter'){
+    runCommand(termInput.value);
+    termInput.value='';
+  }
+});
+
+const bootLines = [
+  ['[OK] Initializing secure session...', 'ok'],
+  ['[OK] Loading FortiGate policy set...', 'ok'],
+  ['[OK] Establishing ZTNA tunnel...', 'ok'],
+  ['[OK] SIEM correlation engine online...', 'ok'],
+  ["Welcome. Type 'help' to begin, or scroll to explore.", 'muted'],
+];
+let bootIdx=0;
+function bootSequence(){
+  if(bootIdx<bootLines.length){
+    printLine(bootLines[bootIdx][0], bootLines[bootIdx][1]);
+    bootIdx++;
+    setTimeout(bootSequence, 260);
+  }
+}
+bootSequence();
+</script>
+</body>
+</html>
